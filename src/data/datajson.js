@@ -1,11 +1,6 @@
 var datajson = {
     "name": "John Doe",
-    "vegetarian": false,
-    "birthDate": "1985-06-02",
-    "personalData": {
-        "age": 34
-    },
-    "postalCode": "12345"
+    "birthDate": "1991-06-02"
 }
 
 export default datajson;

@@ -10,29 +10,13 @@ var uischemajson = {
                 },
                 {
                     "type": "Control",
-                    "scope": "#/properties/personalData/properties/age"
-                },
-                {
-                    "type": "Control",
                     "scope": "#/properties/birthDate"
                 }
             ]
         },
         {
-            "type": "Label",
-            "text": "Additional Information"
-        },
-        {
             "type": "HorizontalLayout",
             "elements": [
-                {
-                    "type": "Control",
-                    "scope": "#/properties/personalData/properties/height"
-                },
-                {
-                    "type": "Control",
-                    "scope": "#/properties/nationality"
-                },
                 {
                     "type": "Control",
                     "scope": "#/properties/occupation",
