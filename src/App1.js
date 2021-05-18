@@ -5,13 +5,9 @@ import { JsonForms } from '@jsonforms/react';
 // import { person } from '@jsonforms/examples';
 import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
 
-import schema from './data/jsonschema';
-import uischema from './data/uischema';
-import initialData from './data/formdata';
-
-// import schema from './data/schemajson';
-// import uischema from './data/uischemajson';
-// import initialData from './data/datajson';
+import schema from './data/schemajson';
+import uischema from './data/uischemajson';
+import initialData from './data/datajson';
 
 // const schema = person.schema;
 // const uischema = person.uischema;
