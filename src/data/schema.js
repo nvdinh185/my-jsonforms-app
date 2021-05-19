@@ -1,37 +1,42 @@
-export default {
-    title: "A registration form",
-    description: "A simple form example.",
-    type: "object",
-    required: [
-        "firstName",
-        "lastName"
+const schema = {
+    "title": "A list of tasks",
+    "type": "object",
+    "required": [
+        "title"
     ],
-    properties: {
-        firstName: {
-            type: "string",
-            title: "First name",
-            default: "Chuck"
+    "properties": {
+        "title": {
+            "type": "string",
+            "title": "Task list title"
         },
-        lastName: {
-            type: "string",
-            title: "Last name"
-        },
-        age: {
-            type: "number",
-            title: "Age"
-        },
-        bio: {
-            type: "string",
-            title: "Bio"
-        },
-        password: {
-            type: "string",
-            title: "Password"
-        },
-        telephone: {
-            type: "number",
-            title: "Telephone",
-            minLength: 10
+        "tasks": {
+            "type": "array",
+            "title": "Tasks",
+            "items": {
+                "type": "object",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "title": "Title",
+                        "description": "A sample title"
+                    },
+                    "details": {
+                        "type": "string",
+                        "title": "Task details",
+                        "description": "Enter the task details"
+                    },
+                    "done": {
+                        "type": "boolean",
+                        "title": "Done?",
+                        "default": false
+                    }
+                }
+            }
         }
     }
 }
+
+export default schema
