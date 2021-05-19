@@ -16,6 +16,18 @@ export default {
             type: "string",
             title: "Last name"
         },
+        age: {
+            type: "number",
+            title: "Age"
+        },
+        bio: {
+            type: "string",
+            title: "Bio"
+        },
+        password: {
+            type: "string",
+            title: "Password"
+        },
         telephone: {
             type: "number",
             title: "Telephone",
