@@ -17,7 +17,7 @@ export default {
             title: "Last name"
         },
         telephone: {
-            type: "string",
+            type: "number",
             title: "Telephone",
             minLength: 10
         }
