@@ -1,25 +1,66 @@
-export default {
-    title: "A registration form",
-    description: "A simple form example.",
+const schema = {
+    title: "Nhập thông tin điểm bán",
+    description: "Vui lòng nhập thông tin điểm bán.",
     type: "object",
-    required: [
-        "firstName",
-        "lastName"
-    ],
     properties: {
-        firstName: {
+        province: {
             type: "string",
-            title: "First name",
-            default: "Chuck"
+            title: "Tỉnh",
+            enum: ["hue", "danang", "quangnam"],
+            enumNames: ["Thừa Thiên Huế", "Đà Nẵng", "Quảng Nam"]
         },
-        lastName: {
+        district: {
             type: "string",
-            title: "Last name"
+            title: "Huyện",
+            enum: ["hue", "danang", "quangnam"],
+            enumNames: ["Thừa Thiên Huế", "Đà Nẵng", "Quảng Nam"]
         },
-        telephone: {
+        commune: {
+            type: "string",
+            title: "Xã",
+            enum: ["hue", "danang", "quangnam"],
+            enumNames: ["Thừa Thiên Huế", "Đà Nẵng", "Quảng Nam"]
+        },
+        id: {
+            type: "integer",
+            title: "Mã điểm bán",
+        },
+        name: {
+            type: "string",
+            title: "Tên điểm bán",
+        },
+        EZ: {
             type: "number",
-            title: "Telephone",
-            minLength: 10
+            title: "Số EZ",
+            minLength: 9
+        },
+        type: {
+            type: 'array',
+            title: "Loại điểm bán",
+            items: {
+                type: "string",
+                enum: ["phapnhan", "thucuoc", "tkgt"],
+                enumNames: ["Pháp nhân", "Thu cước", "TK&GT"]
+            },
+            uniqueItems: true,
+        },
+        files: {
+            type: "string",
+            format: "data-url",
+            title: "Hợp đồng"
+        },
+        table: {
+            type: "boolean",
+            title: "Bảng hiệu",
+            enum: ["dung", "ngang"],
+            enumNames: ["Đứng", "Ngang"]
+        },
+        date: {
+            type: "string",
+            title: "Ngày hoạt động",
+            format: "date"
         }
     }
 }
+
+export default schema

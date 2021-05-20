@@ -1,16 +1,13 @@
 export default {
-    "firstName": {
-        "ui:autofocus": true,
-        "ui:emptyValue": "",
-        "ui:autocomplete": "family-name"
+    "type": {
+        "ui:widget": "checkboxes"
     },
-    "lastName": {
-        "ui:emptyValue": "",
-        "ui:autocomplete": "given-name"
-    },
-    "telephone": {
+    "files": {
         "ui:options": {
-            "inputType": "tel"
+            "accept": ".pdf"
         }
+    },
+    "table": {
+        "ui:widget": "radio" // could also be "select"
     }
 }

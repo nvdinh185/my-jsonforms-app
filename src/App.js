@@ -1,6 +1,6 @@
-import { Component } from 'react';
+import React from 'react';
 import Form from "@rjsf/core";
-import schema from './data/schema';
+// import schema from './data/schema';
 import uischema from './data/uischema';
 import data from './data/formdata';
 
@@ -23,16 +23,102 @@ import data from './data/formdata';
 
 // export default App;
 
-export default class App extends Component {
+const schema = {
+    title: "Nhập thông tin điểm bán123",
+    description: "Vui lòng nhập thông tin điểm bán.",
+    type: "object",
+    properties: {
+        province: {
+            type: "string",
+            title: "Tỉnh",
+            enum: ["hue", "danang", "quangnam"],
+            enumNames: ["Thừa Thiên Huế", "Đà Nẵng", "Quảng Nam"]
+        },
+        district: {
+            type: "string",
+            title: "Huyện",
+            enum: ["hue", "danang", "quangnam"],
+            enumNames: ["Thừa Thiên Huế", "Đà Nẵng", "Quảng Nam"]
+        },
+        commune: {
+            type: "string",
+            title: "Xã",
+            enum: ["hue", "danang", "quangnam"],
+            enumNames: ["Thừa Thiên Huế", "Đà Nẵng", "Quảng Nam"]
+        },
+        id: {
+            type: "integer",
+            title: "Mã điểm bán",
+        },
+        name: {
+            type: "string",
+            title: "Tên điểm bán",
+        },
+        EZ: {
+            type: "number",
+            title: "Số EZ",
+            minLength: 9
+        },
+        type: {
+            type: 'array',
+            title: "Loại điểm bán",
+            items: {
+                type: "string",
+                enum: ["phapnhan", "thucuoc", "tkgt"],
+                enumNames: ["Pháp nhân", "Thu cước", "TK&GT"]
+            },
+            uniqueItems: true,
+        },
+        files: {
+            type: "string",
+            format: "data-url",
+            title: "Hợp đồng"
+        },
+        table: {
+            type: "boolean",
+            title: "Bảng hiệu",
+            enum: ["dung", "ngang"],
+            enumNames: ["Đứng", "Ngang"]
+        },
+        date: {
+            type: "string",
+            title: "Ngày hoạt động",
+            format: "date"
+        }
+    }
+}
+export default class App extends React.Component {
+
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleError = this.handleError.bind(this);
+        // schema.properties.district.enumNames = ["namdong1", "phuloc1", "phongdien1"];
     }
 
+    objAddress = {
+        hue: ["namdong", "phuloc", "phongdien"],
+        danang: ["lienchieu", "thanhkhe", "sontra"],
+        quangnam: ["dienban", "namphuoc", "thangbinh"]
+    };
+
     handleChange({ formData }) {
-        console.log(formData);
+        let arPro = Object.getOwnPropertyNames(formData);
+        for (const pro of arPro) {
+            if (pro === "province") {
+                schema.title = Date.now();
+                console.log(schema.title);
+                console.log(formData[pro]);
+                console.log(this.objAddress[formData[pro]]);
+                schema.properties.district = {
+                    type: "string",
+                    title: "Huyện",
+                    enum: this.objAddress[formData[pro]],
+                    enumNames: this.objAddress[formData[pro]]
+                };
+            }
+        }
     }
 
     handleSubmit({ formData }) {
@@ -45,7 +131,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <Form schema={schema} uiSchema={uischema} formData={data}
+            <Form schema={schema} uiSchema={uischema}
                 onChange={this.handleChange} onSubmit={this.handleSubmit} onError={this.handleError} />
         )
     }
