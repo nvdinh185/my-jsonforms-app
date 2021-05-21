@@ -1,56 +1,75 @@
 import React from 'react';
+import Form from "@rjsf/core";
+import schema from './data/schema';
+import uischema from './data/uischema';
+// import data from './data/formdata';
 
-class Clock extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { date: new Date() };
-    }
+// function App() {
 
-    render() {
-        return (
-            <div>
-                <h1>Hello, {this.props.name}!</h1>
-                <input type="text" onChange={() => this.props.onChange()} />
-                <button onClick={() => this.props.onClickMe()}>click me!</button>
-                <button onClick={() => this.props.onClickMeToo()}>click me too!</button>
-                <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-            </div>
-        );
-    }
-};
+//     const log = (type) => console.log.bind(console, type);
 
-let test = {
-    date: Date.now()
-}
+//     return (
+//         <div className="App">
+//             <Form schema={schema}
+//                 uiSchema={uischema}
+//                 formData={data}
+//                 onChange={log("changed")}
+//                 onSubmit={log("submitted")}
+//                 onError={log("errors")}
+//             />
+//         </div>
+//     );
+// }
+
+// export default App;
+
 export default class App extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = { date: test.date };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleError = this.handleError.bind(this);
+        this.state = { schema: schema };
     }
 
-    handleChange(data) {
-        // console.log(data);
-        this.setState({ date: Date.now() });
-        // this.state.date = Date.now();
-        // console.log(test);
+    objAddress = {
+        hue: ["namdong", "phuloc", "phongdien"],
+        danang: ["lienchieu", "thanhkhe", "sontra"],
+        quangnam: ["dienban", "namphuoc", "thangbinh"]
+    };
+
+    handleChange({ formData }) {
+        // console.log(formData);
+        let arPro = Object.getOwnPropertyNames(formData);
+        // console.log(arPro);
+        // chỉ khi thay đổi tỉnh thì mới thực hiện
+        if (arPro.length === 1 && arPro[0] === "province") {
+            // console.log(formData[arPro[0]]);
+            // console.log(this.objAddress[formData[pro]]);
+            this.state.schema.properties.district = {
+                type: "string",
+                title: "Huyện",
+                enum: this.objAddress[formData[arPro[0]]],
+                enumNames: this.objAddress[formData[arPro[0]]]
+            };
+            this.setState(this.state);
+            // console.log(this.state.schema);
+        }
     }
 
-    clickMe = (date) => {
-        console.log(test);
-        console.log(date);
+    handleSubmit({ formData }) {
+        console.log(formData);
     }
 
-    clickMeToo = (date) => {
-        console.log(test);
-        test.date = Date.now();
-        console.log(test);
-        console.log(date);
+    handleError(err) {
+        console.log(err);
     }
 
     render() {
         return (
-            <Clock name={this.state.date} onClickMeToo={this.clickMeToo} onClickMe={() => this.clickMe(test.date)}
-                onChange={this.handleChange} />
+            <Form schema={this.state.schema} uiSchema={uischema}
+                onChange={this.handleChange} onSubmit={this.handleSubmit} onError={this.handleError} />
         )
     }
-};
+}

@@ -52,7 +52,7 @@ const schema = {
         table: {
             type: "boolean",
             title: "Bảng hiệu",
-            enum: ["dung", "ngang"],
+            enum: [true, false],
             enumNames: ["Đứng", "Ngang"]
         },
         date: {
