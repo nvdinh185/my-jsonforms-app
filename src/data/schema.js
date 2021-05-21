@@ -12,14 +12,14 @@ const schema = {
         district: {
             type: "string",
             title: "Huyện",
-            enum: ["hue", "danang", "quangnam"],
-            enumNames: ["Thừa Thiên Huế", "Đà Nẵng", "Quảng Nam"]
+            enum: [],
+            enumNames: []
         },
         commune: {
             type: "string",
             title: "Xã",
-            enum: ["hue", "danang", "quangnam"],
-            enumNames: ["Thừa Thiên Huế", "Đà Nẵng", "Quảng Nam"]
+            enum: [],
+            enumNames: []
         },
         id: {
             type: "integer",

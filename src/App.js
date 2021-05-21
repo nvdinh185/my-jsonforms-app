@@ -2,26 +2,6 @@ import React from 'react';
 import Form from "@rjsf/core";
 import schema from './data/schema';
 import uischema from './data/uischema';
-// import data from './data/formdata';
-
-// function App() {
-
-//     const log = (type) => console.log.bind(console, type);
-
-//     return (
-//         <div className="App">
-//             <Form schema={schema}
-//                 uiSchema={uischema}
-//                 formData={data}
-//                 onChange={log("changed")}
-//                 onSubmit={log("submitted")}
-//                 onError={log("errors")}
-//             />
-//         </div>
-//     );
-// }
-
-// export default App;
 
 export default class App extends React.Component {
 
@@ -53,8 +33,14 @@ export default class App extends React.Component {
                 enum: this.objAddress[formData[arPro[0]]],
                 enumNames: this.objAddress[formData[arPro[0]]]
             };
+            this.state.schema.properties.commune = {
+                type: "string",
+                title: "Xã",
+                enum: this.objAddress[formData[arPro[0]]],
+                enumNames: this.objAddress[formData[arPro[0]]]
+            };
             this.setState(this.state);
-            // console.log(this.state.schema);
+            console.log(this.state.schema);
         }
     }
 
